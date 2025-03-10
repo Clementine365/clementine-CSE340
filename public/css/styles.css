@@ -1,6 +1,149 @@
 /******* Change Box Model ***************/
-*,
-*:before,
-*:after {
+/* Reset default browser styling */
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* Styling for Header */
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+header .logo img {
+  width: 100px;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Hero section */
+.hero {
+  position: relative;
+  background: url('/images/hero-image.jpg') no-repeat center center;
+  background-size: cover;
+  height: 300px;
+  text-align: center;
+  color: white;
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hero h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  padding: 10px 20px;
+  background-color: #e67e22;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+/* Features section */
+.features {
+  display: block;
+  margin-top: 30px;
+  padding: 0 20px;
+}
+
+.feature {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.feature img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+.feature h2 {
+  font-size: 1.5em;
+  margin-top: 10px;
+}
+
+.feature p {
+  font-size: 1em;
+  color: #777;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+}
+
+/* Responsive design for larger screens */
+@media (min-width: 768px) {
+  .hero {
+      height: 400px;
+  }
+
+  .hero-text h1 {
+      font-size: 2.5em;
+  }
+
+  .features {
+      display: flex;
+      justify-content: space-around;
+  }
+
+  .feature {
+      flex: 1;
+      margin: 0 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+      height: 500px;
+  }
+
+  .hero-text h1 {
+      font-size: 3em;
+  }
+
+  .cta-button {
+      font-size: 1.2em;
+  }
+
+  .feature {
+      margin-bottom: 30px;
+  }
 }
