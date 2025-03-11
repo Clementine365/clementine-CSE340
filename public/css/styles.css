@@ -1,4 +1,4 @@
-  /* Apply background image to the body */
+  /* the background image to the body */
   body {
     background-image: url('/images/site/small_check.png');
     background-size: cover;
@@ -8,7 +8,7 @@
     color: #333;
 }
 
-/* Container for the white background content */
+/* the Container for the white background content */
 .content-container {
     background-color: #fff;
     padding: 30px;
@@ -22,7 +22,7 @@
 header {
     text-align: center;
     margin-bottom: 20px;
-    background-color: #fff; /* Make header background white */
+    background-color: #fff; /* this will Make header background white */
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -49,11 +49,11 @@ nav ul li a {
     color: #333;
 }
 
-/* Hero Section */
+/* the Hello Section */
 .hello {
     text-align: center;
     margin-bottom: 40px;
-    background-color: #fff; /* Make hero background white */
+    background-color: #fff; /* this will Make hello background white */
     padding: 40px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -76,12 +76,12 @@ nav ul li a {
     border-radius: 5px;
 }
 
-/* Features Section */
+/* the Features Section */
 .features {
     display: flex;
     justify-content: space-around;
     margin-bottom: 40px;
-    background-color: #fff; /* Make feature section background white */
+    background-color: #fff; /* my feature section background have to be white */
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -106,13 +106,13 @@ nav ul li a {
     color: #666;
 }
 
-/* Car Gallery Section */
+/* the Car Gallery Section */
 .car-gallery {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 20px;
-    background-color: #fff; /* Make car gallery background white */
+    background-color: #fff; /* my car gallery background is white */
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
