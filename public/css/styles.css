@@ -1,160 +1,225 @@
-  /* the background image to the body */
-  body {
-    background-image: url('/images/site/small_check.png');
-    background-size: cover;
-    background-position: center;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: #333;
-}
-
-/* the Container for the white background content */
-.content-container {
-    background-color: #fff;
-    padding: 30px;
-    margin: 50px auto;
-    width: 90%;
-    max-width: 1200px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+body {
+  font-family: sans-serif;
+  background-image: url('images/site/checkerboard.jpg'); /* Checkerboard background */
+  background-size: cover; /* Ensures the image covers the entire screen */
+  background-position: center; /* Center the background image */
+  margin: 0;
+  padding: 0;
 }
 
 header {
-    text-align: center;
-    margin-bottom: 20px;
-    background-color: #fff; /* this will Make header background white */
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #007bff; /* Blue header background */
+  color: white; /* White text for contrast */
+  padding: 10px 0; /* Adjust padding as needed */
+  text-align: center;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.1); /* Add subtle shadow for depth */
 }
 
-header .logo img {
-    width: 150px;
-    height: auto;
+header h1 {
+  margin: 0;
+  font-size: 2em; /* Adjust font size as needed */
+}
+
+nav {
+  background-color: #343a40; /* Dark gray navigation background */
+  padding: 10px 0;
 }
 
 nav ul {
-    list-style-type: none;
-    padding: 0;
-    text-align: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 15px;
+nav li {
+  display: inline; /* Items will appear horizontally */
+  margin: 0 10px; /* Adjust spacing between nav items */
 }
 
-nav ul li a {
-    text-decoration: none;
-    font-weight: bold;
-    color: #333;
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
-/* the Hello Section */
-.hello {
-    text-align: center;
-    margin-bottom: 40px;
-    background-color: #fff; /* this will Make hello background white */
-    padding: 40px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+nav a:hover {
+  background-color: #007bff; /* Highlight on hover */
 }
 
-.hello img {
-    width: 100px;
-    height: auto;
+/* Main container with white background */
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 20px auto;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.9; /* Optional: Slight transparency for background to show through */
+  border-radius: 10px; /* Optional: Adds rounded corners to the white container */
 }
 
-.hello-text h1 {
-    font-size: 2.5rem;
-    color: #333;
+/* Section for DMC Delorean */
+.delorean {
+  width: 100%;
+  text-align: left; /* Align text to the left */
+  margin-bottom: 20px;
 }
 
-.cta-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
+.delorean h2 {
+  color: #007bff; /* Blue color for DMC Delorean heading */
+  margin-left: 20px; /* Adds some space to the left of the heading */
 }
 
-/* the Features Section */
-.features {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 40px;
-    background-color: #fff; /* my feature section background have to be white */
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.delorean ul {
+  background-color: transparent; /* Transparent background for the list */
+  padding-left: 40px; /* Indentation for list items */
+  color: #007bff; /* Blue text for the list items */
+  list-style: disc; /* Bullet points for list items */
 }
 
-.feature {
-    text-align: center;
-    width: 30%;
+.delorean img {
+  display: block;
+  margin: 20px auto; /* Centers the image horizontally */
+  width: 60%; /* Makes the image bigger */
+  max-width: 500px; /* Maximum width of the image */
 }
 
-.feature img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
+/* Upgrades and Reviews - Flexbox layout */
+.upgrades-and-reviews {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
 }
 
-.feature h2 {
-    font-size: 1.5rem;
-    color: #333;
+/* Upgrades section */
+.upgrades {
+  width: 45%; /* Set the width to 45% for both sections */
 }
 
-.feature p {
-    color: #666;
+.reviews {
+  width: 45%; /* Set the width to 45% for both sections */
 }
 
-/* the Car Gallery Section */
-.car-gallery {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-    background-color: #fff; /* my car gallery background is white */
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.upgrades h2, .reviews h2 {
+  color: #007bff; /* Blue color for headings */
 }
 
-.car-item {
-    width: 30%;
-    background-color: #f8f8f8;
-    padding: 20px;
-    text-align: center;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+/* Upgrades row (flux, flame, bumper stickers, hub caps) */
+.upgrades-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.car-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
+.upgrade-column {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
 }
 
-.car-item h3 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-top: 15px;
+.upgrade {
+  margin: 10px 0;
+  text-align: center;
+  background-color: #007bff; /* Blue background for upgrades */
+  padding: 10px;
+  border-radius: 5px; /* Rounded corners for upgrade items */
 }
 
-.car-item p {
-    color: #666;
-    font-size: 1rem;
-    margin-top: 10px;
+.upgrade img {
+  width: 100%;
+  max-width: 150px;
 }
 
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    font-size: 1rem;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+/* Reviews section */
+.reviews ul {
+  list-style: disc;
+  padding-left: 20px;
 }
 
-footer p {
-    margin: 0;
+.reviews h2 {
+  color: black; /* Black color for the DMC Delorean Reviews title */
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+footer.footer {
+  background-color: #008CBA; /* Teal footer background */
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design (Mobile View and Tablet View) */
+@media (max-width: 768px) {
+  .container {
+      width: 90%;
+      padding: 10px;
+  }
+
+  .upgrades-and-reviews {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .upgrades, .reviews {
+      width: 100%;
+      margin-bottom: 20px;
+  }
+
+  .delorean img {
+      width: 80%; /* Larger image on mobile */
+  }
+
+  .upgrade {
+      width: 100%; /* Each upgrade item takes full width on mobile */
+      margin-bottom: 20px;
+  }
+
+  .footer {
+      padding: 20px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+      font-size: 1.5em; /* Adjust font size on very small screens */
+  }
+
+  .delorean h2 {
+      font-size: 1.2em; /* Adjust heading size */
+  }
+
+  .delorean ul {
+      font-size: 0.9em; /* Smaller font for list items on mobile */
+  }
+
+  button {
+      padding: 8px 16px; /* Smaller button on mobile */
+  }
 }
