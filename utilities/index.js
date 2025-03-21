@@ -57,6 +57,35 @@ Util.buildClassificationGrid = async function(data){
   }
   return grid
 }
+// utilities/index.js
+
+// Utility function to format numbers with commas
+const formatNumber = (num) => {
+  return num.toLocaleString();
+};
+
+// Function to generate the HTML for vehicle details
+exports.generateVehicleHTML = (vehicleData) => {
+  // Format price and mileage
+  const price = `$${formatNumber(vehicleData.price)}`;
+  const mileage = formatNumber(vehicleData.mileage);
+
+  // Construct the HTML content for the vehicle
+  return `
+      <div class="vehicle-detail">
+          <div class="vehicle-image">
+              <img src="${vehicleData.imageUrl}" alt="${vehicleData.make} ${vehicleData.model}">
+          </div>
+          <div class="vehicle-info">
+              <h2>${vehicleData.make} ${vehicleData.model}</h2>
+              <p><strong>Year:</strong> ${vehicleData.year}</p>
+              <p><strong>Price:</strong> ${price}</p>
+              <p><strong>Mileage:</strong> ${mileage} miles</p>
+              <p><strong>Description:</strong> ${vehicleData.description}</p>
+          </div>
+      </div>
+  `;
+};
 
 /* ****************************************
  * Middleware For Handling Errors

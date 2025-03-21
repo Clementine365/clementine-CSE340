@@ -18,4 +18,27 @@ invCont.buildByClassificationId = async function (req, res, next) {
     grid,
   })
 }
+
+// controllers/inventory-controller.js
+const inventoryModel = require('../models/inventory-model');
+const utils = require('../utilities');
+
+// Function to render the vehicle detail view
+exports.vehicleDetail = (req, res) => {
+    const vehicleId = req.params.id; // Get vehicle ID from the URL
+    inventoryModel.getVehicleById(vehicleId, (err, vehicleData) => {
+        if (err) {
+            return res.status(500).send("Error retrieving vehicle data.");
+        }
+
+        // Use utility function to generate the HTML for the vehicle
+        const vehicleHTML = utils.generateVehicleHTML(vehicleData);
+
+        // Render the vehicle detail page with the generated HTML
+        res.render('inventory/vehicle-detail', {
+            title: `${vehicleData.make} ${vehicleData.model}`,
+            vehicleHTML: vehicleHTML
+        });
+    });
+};
 module.exports = invCont
