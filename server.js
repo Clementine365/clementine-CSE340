@@ -11,6 +11,7 @@ const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const env = require("dotenv").config();
 const app = express();
+const path = require('path');
 const static = require("./routes/static");
 const inventoryRoute = require("./routes/inventoryRoute");
 
@@ -22,6 +23,7 @@ const utilities = require("./utilities"); // Make sure utilities.js is in the co
  *************************/
 app.set("view engine", "ejs");
 app.use(expressLayouts);
+app.use(express.static(path.join(__dirname, 'public')));
 app.set("layout", "./layouts/layout"); // not at views root
 
 /* ***********************
