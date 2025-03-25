@@ -14,8 +14,6 @@ const app = express();
 const path = require('path');
 const static = require("./routes/static");
 const inventoryRoute = require("./routes/inventoryRoute");
-
-// Import the utilities module (add this line)
 const utilities = require("./utilities"); // Make sure utilities.js is in the correct path
 
 /* ***********************
@@ -23,19 +21,19 @@ const utilities = require("./utilities"); // Make sure utilities.js is in the co
  *************************/
 app.set("view engine", "ejs");
 app.use(expressLayouts);
-app.use(express.static(path.join(__dirname, 'public')));
-app.set("layout", "./layouts/layout"); // not at views root
+app.set("layout", "layouts/layout"); // Adjusted layout path
+
 
 /* ***********************
  * Routes
  *************************/
-app.use(static);
+// Static Routes (ensure you serve the public directory if needed)
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
-// Index route 
-app.get("/", baseController.buildHome);
+// Index route with error handling
+app.get("/", utilities.handleErrors(baseController.buildHome));
 
-// Index route
-app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv", inventoryRoute);
 
@@ -46,12 +44,10 @@ app.use(async (req, res, next) => {
 
 /* ***********************
  * Express Error Handler
- * Place after all other middleware
  *************************/
 app.use(async (err, req, res, next) => {
   try {
-    // Ensure this function is async to use await
-    let nav = await utilities.getNav(); // This will call the getNav function from utilities
+    let nav = await utilities.getNav();
     console.error(`Error at: "${req.originalUrl}": ${err.message}`);
     res.render("errors/error", {
       title: err.status || 'Server Error',
@@ -59,7 +55,6 @@ app.use(async (err, req, res, next) => {
       nav
     });
   } catch (error) {
-    // If the getNav function fails, you can handle the error gracefully
     console.error('Error fetching navigation:', error);
     res.status(500).send('Something went wrong!');
   }
@@ -67,10 +62,10 @@ app.use(async (err, req, res, next) => {
 
 /* ***********************
  * Local Server Information
- * Values from .env (environment) file
  *************************/
 const port = process.env.PORT;
 const host = process.env.HOST;
+
 
 /* ***********************
  * Log statement to confirm server operation

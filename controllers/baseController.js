@@ -1,4 +1,4 @@
-const utilities = require("../utilities/"); // Ensure you're importing utilities.js or wherever 'getNav' is defined
+const utilities = require("../utilities"); // Ensure you're importing utilities.js or wherever 'getNav' is defined
 const baseController = {};
 
 baseController.buildHome = async function(req, res) {

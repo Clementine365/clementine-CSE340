@@ -28,7 +28,7 @@ VALUES   (
     'Custom',
     '2007',
     'Ever want to be a super hero? now you can with the batmobile. This car allows you to switch to bike mode allowing you to easily maneuver through traffic during rush hour.',
-    '/images/batmobile.jpg',
+    '/images/vehicles/batmobile.jpg',
     '/images/batmobile-tn.jpg',
     65000,
     29887,

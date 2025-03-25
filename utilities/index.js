@@ -46,7 +46,8 @@ Util.buildClassificationGrid = async function (data) {
     data.forEach((vehicle) => {
       grid += "<li>";
       grid += `<a href="../../inv/detail/${vehicle.inv_id}" title="View ${vehicle.inv_make} ${vehicle.inv_model} details">`;
-      grid += `<img src="${vehicle.inv_image_url}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model} on CSE Motors" />`;
+      grid += `<img src="${vehicle.inv_image_url || '/images/default.jpg'}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}" />`;
+
       grid += "</a>";
       grid += "<div class='namePrice'>";
       grid += "<hr />";
@@ -74,6 +75,14 @@ const formatNumber = (num) => {
 // Function to generate the HTML for vehicle details
 Util.generateVehicleHTML = (vehicleData) => {
   try {
+    // Ensure vehicleData is defined and has the necessary properties
+    if (!vehicleData || !vehicleData.inv_make || !vehicleData.inv_model || !vehicleData.inv_image_url) {
+      return "<p>Error: Missing vehicle data.</p>"; // Error handling for missing data
+    }
+
+    // Handle missing or invalid image URL
+    const imageUrl = vehicleData.inv_image_url ? vehicleData.inv_image_url : '/images/default.jpg';
+
     // Format price and mileage
     const price = `$${formatNumber(vehicleData.inv_price)}`;
     const mileage = formatNumber(vehicleData.inv_mileage);
@@ -82,7 +91,7 @@ Util.generateVehicleHTML = (vehicleData) => {
     return `
       <div class="vehicle-detail">
           <div class="vehicle-image">
-              <img src="${vehicleData.inv_image_url}" alt="${vehicleData.inv_make} ${vehicleData.inv_model}">
+              <img src="${imageUrl}" alt="${vehicleData.inv_make} ${vehicleData.inv_model}">
           </div>
           <div class="vehicle-info">
               <h2>${vehicleData.inv_make} ${vehicleData.inv_model}</h2>
@@ -108,3 +117,12 @@ Util.handleErrors = (fn) => (req, res, next) =>
   Promise.resolve(fn(req, res, next)).catch(next);
 
 module.exports = Util;
+
+
+
+
+
+
+
+
+

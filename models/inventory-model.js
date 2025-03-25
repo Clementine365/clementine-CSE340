@@ -60,7 +60,24 @@ async function getVehicleById(vehicleId) {
        WHERE i.vehicle_id = $1`,
       [vehicleId]
     );
-
+    async function getVehicleById(vehicleId) {
+      try {
+        const result = await pool.query(
+          "SELECT * FROM public.inventory WHERE vehicle_id = $1",
+          [vehicleId]
+        );
+    
+        // If no vehicle found, return null
+        if (result.rows.length === 0) {
+          return null;
+        }
+    
+        return result.rows[0];  // Return the vehicle data
+      } catch (error) {
+        console.error("Error in getVehicleById:", error);
+        throw error;  // Rethrow the error to be handled by the controller
+      }
+    }
     // If no vehicle found, return null or throw an error
     if (!data.rows.length) {
       throw new Error(`No vehicle found with id: ${vehicleId}`);

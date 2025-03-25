@@ -1,7 +1,7 @@
 /* General Body Styles */
 body {
   font-family: sans-serif;
-  background-image: url('images/site/Checkerboard.jpg'); /* Checkerboard background */
+  background-image: url("images/site/checkerboard.jpg"); /* Checkerboard background */
   background-size: 100px 100px; /* Ensures the image appears as a repeating checkerboard */
   background-repeat: repeat; /* Repeat the background to cover the entire page */
   background-position: top left; /* Ensure the background starts at the top left */

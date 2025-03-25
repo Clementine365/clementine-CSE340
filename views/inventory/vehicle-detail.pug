@@ -1,0 +1,34 @@
+// views/inventory/vehicle-detail.pug
+
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/styles.css')  // Link to your stylesheets
+  body
+    header
+      h1= title
+
+    main
+      // Vehicle Detail Section
+      .vehicle-detail
+        .vehicle-image
+          img(src=vehicleData.inv_image_url, alt=vehicleData.inv_make + " " + vehicleData.inv_model)
+        
+        .vehicle-info
+          h2= vehicleData.inv_make + " " + vehicleData.inv_model
+          p
+            strong Year: 
+            | #{vehicleData.inv_year}
+          p
+            strong Price: 
+            | $#{vehicleData.inv_price.toLocaleString()}
+          p
+            strong Mileage: 
+            | #{vehicleData.inv_mileage.toLocaleString()} miles
+          p
+            strong Description: 
+            | #{vehicleData.inv_description}
+
+    footer
+      p Footer content here

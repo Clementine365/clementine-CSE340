@@ -1,44 +1,56 @@
-const invModel = require("../models/inventory-model")
-const utilities = require("../utilities")
+// controllers/inventory-controller.js
+const inventoryModel = require('../models/inventory-model');
+const utils = require('../utilities');
 
-const invCont = {}
+const invCont = {};
 
 /* ***************************
  *  Build inventory by classification view
  * ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
-  const classification_id = req.params.classificationId
-  const data = await invModel.getInventoryByClassificationId(classification_id)
-  const grid = await utilities.buildClassificationGrid(data)
-  let nav = await utilities.getNav()
-  const className = data[0].classification_name
-  res.render("./inventory/classification", {
-    title: className + " vehicles",
-    nav,
-    grid,
-  })
-}
-
-// controllers/inventory-controller.js
-const inventoryModel = require('../models/inventory-model');
-const utils = require('../utilities');
+  const classification_id = req.params.classificationId;
+  try {
+    const data = await inventoryModel.getInventoryByClassificationId(classification_id);
+    const grid = await utils.buildClassificationGrid(data);
+    const nav = await utils.getNav();
+    const className = data.length > 0 ? data[0].classification_name : "Unknown classification";
+    
+    res.render("./inventory/classification", {
+      title: className + " vehicles",
+      nav,
+      grid,
+    });
+  } catch (error) {
+    console.error("Error fetching inventory data:", error);
+    next(error);
+  }
+};
 
 // Function to render the vehicle detail view
-exports.vehicleDetail = (req, res) => {
-    const vehicleId = req.params.id; // Get vehicle ID from the URL
-    inventoryModel.getVehicleById(vehicleId, (err, vehicleData) => {
-        if (err) {
-            return res.status(500).send("Error retrieving vehicle data.");
-        }
+// Vehicle detail view
+invCont.vehicleDetail = async function (req, res, next) {
+  const vehicleId = req.params.id; // Get vehicle ID from the URL
+  try {
+      const vehicleData = await inventoryModel.getVehicleById(vehicleId); // Fetch vehicle data
 
-        // Use utility function to generate the HTML for the vehicle
-        const vehicleHTML = utils.generateVehicleHTML(vehicleData);
+      if (!vehicleData) {
+          console.error(`Vehicle with ID ${vehicleId} not found.`);
+          return res.status(404).send("Vehicle not found.");
+      }
 
-        // Render the vehicle detail page with the generated HTML
-        res.render('inventory/vehicle-detail', {
-            title: `${vehicleData.make} ${vehicleData.model}`,
-            vehicleHTML: vehicleHTML
-        });
-    });
+      // Generate vehicle HTML with relevant data
+      const vehicleHTML = utils.generateVehicleHTML(vehicleData);
+
+      // Render the vehicle detail page
+      res.render('inventory/vehicle-detail', {
+          title: `${vehicleData.inv_make} ${vehicleData.inv_model}`,
+          vehicleHTML: vehicleHTML
+      });
+  } catch (error) {
+      console.error("Error fetching vehicle details:", error);
+      next(error); // Pass the error to the next middleware for handling
+  }
 };
-module.exports = invCont
+
+
+module.exports = invCont;
