@@ -37,7 +37,7 @@ Util.getNav = async function () {
 
 
 /* **************************************
- * Build the classification view HTML
+ * Build the classification view HTML here 
  * ************************************ */
 Util.buildClassificationGrid = async function (data) {
   let grid = "<ul id='inv-display'>";
