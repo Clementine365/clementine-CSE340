@@ -4,6 +4,7 @@ const baseController = {};
 baseController.buildHome = async function(req, res) {
   try {
     const nav = await utilities.getNav(); // Fetch the nav data
+    req.flash("notice", "This is a flash message.")
     res.render("index", { title: "Home", nav }); // Pass nav data to the view
   } catch (error) {
     console.error('Error fetching nav:', error); // Log error if nav fetching fails

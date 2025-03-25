@@ -7,7 +7,7 @@ body {
   background-position: top left; /* Ensure the background starts at the top left */
   margin: 0; /* Remove default body margin */
   padding: 0; /* Remove default padding */
-  color: #333; /* Default text color */
+  /* color: #f1e5e5;  /* Default text color */
 }
 
 /* Main Container Styles */
