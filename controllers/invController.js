@@ -1,6 +1,6 @@
 // controllers/inventory-controller.js
-const inventoryModel = require('../models/inventory-model');
-const utils = require('../utilities');
+const inventoryModel = require("../models/inventory-model");
+const utils = require("../utilities/");
 
 const invCont = {};
 

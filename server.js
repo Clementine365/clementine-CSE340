@@ -55,7 +55,7 @@ app.set("layout", "layouts/layout"); // Adjusted layout path
 // Static Routes (ensure you serve the public directory if needed)
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
-
+//app.get("/", function(req,res){ res.render("index",{title:"Home"})});
 // Index route with error handling
 app.get("/", utilities.handleErrors(baseController.buildHome));
 
