@@ -74,41 +74,27 @@ const formatNumber = (num) => {
   return num.toLocaleString();
 };
 
-// Function to generate the HTML for vehicle details
-Util.generateVehicleHTML = (vehicleData) => {
-  try {
-    // Ensure vehicleData is defined and has the necessary properties
-    if (!vehicleData || !vehicleData.inv_make || !vehicleData.inv_model || !vehicleData.inv_image_url) {
-      return "<p>Error: Missing vehicle data.</p>"; // Error handling for missing data
-    }
+// Function to wrap the vehicle data in HTML
+exports.wrapVehicleDetailsInHtml = (vehicleData) => {
+  const priceFormatted = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(vehicleData.price);
+  const mileageFormatted = new Intl.NumberFormat('en-US').format(vehicleData.mileage);
 
-    // Handle missing or invalid image URL
-    const imageUrl = vehicleData.inv_image_url ? vehicleData.inv_image_url : '/images/default.jpg';
-
-    // Format price and mileage
-    const price = `$${formatNumber(vehicleData.inv_price)}`;
-    const mileage = formatNumber(vehicleData.inv_mileage);
-
-    // Construct the HTML content for the vehicle
-    return `
-      <div class="vehicle-detail">
-          <div class="vehicle-image">
-              <img src="${imageUrl}" alt="${vehicleData.inv_make} ${vehicleData.inv_model}">
-          </div>
-          <div class="vehicle-info">
-              <h2>${vehicleData.inv_make} ${vehicleData.inv_model}</h2>
-              <p><strong>Year:</strong> ${vehicleData.inv_year}</p>
-              <p><strong>Price:</strong> ${price}</p>
-              <p><strong>Mileage:</strong> ${mileage} miles</p>
-              <p><strong>Description:</strong> ${vehicleData.inv_description}</p>
-          </div>
+  return `
+    <div class="vehicle-detail">
+      <h1>${vehicleData.make} ${vehicleData.model}</h1>
+      <img src="${vehicleData.image_url}" alt="${vehicleData.make} ${vehicleData.model}" class="vehicle-image" />
+      <div class="vehicle-info">
+        <p><strong>Make:</strong> ${vehicleData.make}</p>
+        <p><strong>Model:</strong> ${vehicleData.model}</p>
+        <p><strong>Year:</strong> ${vehicleData.year}</p>
+        <p><strong>Price:</strong> ${priceFormatted}</p>
+        <p><strong>Mileage:</strong> ${mileageFormatted} miles</p>
+        <p><strong>Description:</strong> ${vehicleData.description}</p>
       </div>
-    `;
-  } catch (error) {
-    console.error("Error generating vehicle HTML:", error);
-    return "<p>Error displaying vehicle details</p>"; // Return fallback HTML in case of an error
-  }
+    </div>
+  `;
 };
+
 
 /* ****************************************
  * Middleware For Handling Errors

@@ -45,53 +45,27 @@ async function getInventoryByClassificationId(classification_id) {
 /* ***************************
  *  Get vehicle details by vehicleId
  * ************************** */
-async function getVehicleById(vehicleId) {
-  // Validate the vehicleId before using it
-  if (!vehicleId || isNaN(vehicleId)) {
-    throw new Error("Invalid vehicleId: Must be a valid number.");
-  }
 
+
+// Function to get vehicle data by ID
+exports.getVehicleById = async (inventoryId) => {
   try {
-    const data = await pool.query(
-      `SELECT i.*, c.classification_name 
-       FROM public.inventory AS i 
-       JOIN public.classification AS c 
-       ON i.classification_id = c.classification_id 
-       WHERE i.vehicle_id = $1`,
-      [vehicleId]
+    const result = await pool.query(
+      'SELECT * FROM public.inventory WHERE inventory_id = $1',
+      [inventoryId]
     );
-    async function getVehicleById(vehicleId) {
-      try {
-        const result = await pool.query(
-          "SELECT * FROM public.inventory WHERE vehicle_id = $1",
-          [vehicleId]
-        );
-    
-        // If no vehicle found, return null
-        if (result.rows.length === 0) {
-          return null;
-        }
-    
-        return result.rows[0];  // Return the vehicle data
-      } catch (error) {
-        console.error("Error in getVehicleById:", error);
-        throw error;  // Rethrow the error to be handled by the controller
-      }
-    }
-    // If no vehicle found, return null or throw an error
-    if (!data.rows.length) {
-      throw new Error(`No vehicle found with id: ${vehicleId}`);
-    }
 
-    return data.rows[0];
+    // Return the first row of data (there should only be one matching record)
+    return result.rows[0]; // Ensure this returns the correct result
   } catch (error) {
-    console.error("Error in getVehicleById: " + error);
+    console.error('Error fetching vehicle by ID:', error);
     throw error;
   }
-}
+};
+
 
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
-  getVehicleById
+  getVehicleById,
 };

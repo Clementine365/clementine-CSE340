@@ -26,31 +26,31 @@ invCont.buildByClassificationId = async function (req, res, next) {
   }
 };
 
-// Function to render the vehicle detail view
-// Vehicle detail view
-invCont.vehicleDetail = async function (req, res, next) {
-  const vehicleId = req.params.id; // Get vehicle ID from the URL
+
+// Controller function to retrieve a specific vehicle's details
+exports.getVehicleDetails = async (req, res) => {
   try {
-      const vehicleData = await inventoryModel.getVehicleById(vehicleId); // Fetch vehicle data
+    const inventoryId = req.params.id; // Get the inventory_id from the URL parameters
+    const vehicleData = await inventoryModel.getVehicleById(inventoryId); // Get vehicle data from the model
 
-      if (!vehicleData) {
-          console.error(`Vehicle with ID ${vehicleId} not found.`);
-          return res.status(404).send("Vehicle not found.");
-      }
+    if (!vehicleData) {
+      return res.status(404).send('Vehicle not found');
+    }
 
-      // Generate vehicle HTML with relevant data
-      const vehicleHTML = utils.generateVehicleHTML(vehicleData);
+    // Wrap the vehicle data in HTML and render the view
+    const vehicleHtml = utilities.wrapVehicleDetailsInHtml(vehicleData);
 
-      // Render the vehicle detail page
-      res.render('inventory/vehicle-detail', {
-          title: `${vehicleData.inv_make} ${vehicleData.inv_model}`,
-          vehicleHTML: vehicleHTML
-      });
+    // Render the vehicle details view with the HTML content
+    res.render('inventory/vehicleDetails', {
+      title: `${vehicleData.make} ${vehicleData.model}`, // Set title to make and model
+      vehicleHtml: vehicleHtml // Pass the vehicle details HTML to the view
+    });
   } catch (error) {
-      console.error("Error fetching vehicle details:", error);
-      next(error); // Pass the error to the next middleware for handling
+    console.error('Error retrieving vehicle details:', error);
+    res.status(500).send('Internal Server Error');
   }
 };
+
 
 
 module.exports = invCont;
