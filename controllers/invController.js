@@ -1,4 +1,3 @@
-// controllers/inventory-controller.js
 const inventoryModel = require("../models/inventory-model");
 const utils = require("../utilities/");
 
@@ -21,36 +20,34 @@ invCont.buildByClassificationId = async function (req, res, next) {
       grid,
     });
   } catch (error) {
-    console.error("Error fetching inventory data:", error);
-    next(error);
+    console.error("Error fetching inventory data for classificationId:", classification_id, error);
+    next(error); // Let the error handler deal with the error
   }
 };
 
+/* View Vehicle Detail
+ * ************************** */
+invCont.viewVehicleDetail = async function (req, res) {
+  const vehicleId = req.params.vehicleId;
 
-// Controller function to retrieve a specific vehicle's details
-exports.getVehicleDetails = async (req, res) => {
   try {
-    const inventoryId = req.params.id; // Get the inventory_id from the URL parameters
-    const vehicleData = await inventoryModel.getVehicleById(inventoryId); // Get vehicle data from the model
+    // Fetch vehicle details from the database
+    const vehicleDetails = await inventoryModel.getVehicleDetailsById(vehicleId);
 
-    if (!vehicleData) {
-      return res.status(404).send('Vehicle not found');
+    if (!vehicleDetails) {
+      return res.status(404).send("Vehicle not found");
     }
 
-    // Wrap the vehicle data in HTML and render the view
-    const vehicleHtml = utilities.wrapVehicleDetailsInHtml(vehicleData);
+    // Format the vehicle data for the view
+    const formattedVehicleDetails = utils.formatVehicleDetails(vehicleDetails);
 
-    // Render the vehicle details view with the HTML content
-    res.render('inventory/vehicleDetails', {
-      title: `${vehicleData.make} ${vehicleData.model}`, // Set title to make and model
-      vehicleHtml: vehicleHtml // Pass the vehicle details HTML to the view
-    });
+    // Render the view and pass the formatted vehicle details
+    res.render('inventory/vehicleDetail', { vehicle: formattedVehicleDetails });
+
   } catch (error) {
-    console.error('Error retrieving vehicle details:', error);
-    res.status(500).send('Internal Server Error');
+    console.error("Error fetching vehicle details for vehicleId:", vehicleId, error);
+    res.status(500).send("Internal server error");
   }
 };
-
-
 
 module.exports = invCont;

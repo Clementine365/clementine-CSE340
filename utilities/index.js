@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model");
+
 const Util = {};
 
 /* ************************
@@ -39,34 +40,51 @@ Util.getNav = async function () {
 /* **************************************
  * Build the classification view HTML here 
  * ************************************ */
-Util.buildClassificationGrid = async function(data){
-  let grid
-  if(data.length > 0){
-    grid = '<ul id="inv-display">'
-    data.forEach(vehicle => { 
-      grid += '<li>'
-      grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
-      + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_thumbnail 
-      +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
-      +' on CSE Motors" /></a>'
-      grid += '<div class="namePrice">'
-      grid += '<hr />'
-      grid += '<h2>'
-      grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
-      grid += '</h2>'
-      grid += '<span>$' 
-      + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
-      grid += '</div>'
-      grid += '</li>'
-    })
-    grid += '</ul>'
-  } else { 
-    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+Util.buildClassificationGrid = async function (data) {
+  let grid;
+  if (data.length > 0) {
+    grid = '<ul id="inv-display">';
+    data.forEach((vehicle) => {
+      grid += '<li>';
+      grid +=
+        '<a href="../../inv/detail/' +
+        vehicle.inv_id +
+        '" title="View ' +
+        vehicle.inv_make +
+        " " +
+        vehicle.inv_model +
+        ' details"><img src="' +
+        vehicle.inv_thumbnail +
+        '" alt="Image of ' +
+        vehicle.inv_make +
+        " " +
+        vehicle.inv_model +
+        ' on CSE Motors" /></a>';
+      grid += '<div class="namePrice">';
+      grid += "<hr />";
+      grid += "<h2>";
+      grid +=
+        '<a href="../../inv/detail/' +
+        vehicle.inv_id +
+        '" title="View ' +
+        vehicle.inv_make +
+        " " +
+        vehicle.inv_model +
+        " details'>" +
+        vehicle.inv_make +
+        " " +
+        vehicle.inv_model +
+        "</a>";
+      grid += "</h2>";
+      grid += "<span>$" + new Intl.NumberFormat("en-US").format(vehicle.inv_price) + "</span>";
+      grid += "</div>";
+      grid += "</li>";
+    });
+    grid += "</ul>";
+  } else {
+    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>';
   }
-  return grid
+  return grid;
 };
 
 // Utility function to format numbers with commas
@@ -95,6 +113,30 @@ exports.wrapVehicleDetailsInHtml = (vehicleData) => {
   `;
 };
 
+/*function formatVehicleDetails(vehicle) {
+  // Format price with currency
+  const formattedPrice = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(vehicle.price);
+
+  // Format mileage with commas
+  const formattedMileage = new Intl.NumberFormat("en-US").format(vehicle.mileage);
+
+  // Format the full size image URL
+  const fullImageUrl = vehicle.image_url; // assuming the image is stored with a URL or path
+
+  // Return formatted vehicle data
+  return {
+    make: vehicle.make,
+    model: vehicle.model,
+    year: vehicle.year,
+    price: formattedPrice,
+    mileage: formattedMileage,
+    imageUrl: fullImageUrl,
+    description: vehicle.description, // Assuming there's a description column in your DB
+  };
+};*/
 
 /* ****************************************
  * Middleware For Handling Errors
@@ -104,13 +146,7 @@ exports.wrapVehicleDetailsInHtml = (vehicleData) => {
 Util.handleErrors = (fn) => (req, res, next) =>
   Promise.resolve(fn(req, res, next)).catch(next);
 
-module.exports = Util;
-
-
-
-
-
-
-
-
-
+module.exports = 
+  Util // Export the whole Util object
+   // Export function directly
+;

@@ -45,27 +45,33 @@ async function getInventoryByClassificationId(classification_id) {
 /* ***************************
  *  Get vehicle details by vehicleId
  * ************************** */
+async function getVehicleDetailsById(vehicleId) {
+  if (!vehicleId || isNaN(vehicleId)) {
+    throw new Error("Invalid vehicleId: Must be a valid number.");
+  }
 
-
-// Function to get vehicle data by ID
-exports.getVehicleById = async (inventoryId) => {
   try {
     const result = await pool.query(
-      'SELECT * FROM public.inventory WHERE inventory_id = $1',
-      [inventoryId]
+      `SELECT * 
+       FROM public.inventory AS i 
+       WHERE i.vehicle_id = $1`, 
+      [vehicleId]
     );
 
-    // Return the first row of data (there should only be one matching record)
-    return result.rows[0]; // Ensure this returns the correct result
+    // If no vehicle found, return null
+    return result.rows.length > 0 ? result.rows[0] : null;
   } catch (error) {
-    console.error('Error fetching vehicle by ID:', error);
+    console.error("Error in getVehicleDetailsById: " + error);
     throw error;
   }
-};
+}
+
+
+
 
 
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
-  getVehicleById,
+  getVehicleDetailsById,
 };

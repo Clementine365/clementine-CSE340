@@ -1,18 +1,32 @@
+<!-- views/inventory/vehicleDetail.ejs -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %></title> <!-- Set the title to the vehicle make and model -->
-  <link rel="stylesheet" href="/styles.css"> <!-- Link to the CSS file -->
+  <title><%= vehicle.make %> <%= vehicle.model %> - Vehicle Details</title>
 </head>
 <body>
 
-  <h1><%= title %></h1> <!-- Display the vehicle's make and model in the main heading -->
+  <h1><%= vehicle.make %> <%= vehicle.model %> <%= vehicle.year %></h1>
 
-  <!-- Insert the wrapped vehicle details HTML -->
-  <%= vehicleHtml %>
+  <div class="vehicle-details">
+    <div class="vehicle-image">
+      <img src="<%= vehicle.imageUrl %>" alt="<%= vehicle.make %> <%= vehicle.model %>">
+    </div>
+
+    <div class="vehicle-info">
+      <h2>Details</h2>
+      <p><strong>Price:</strong> <%= vehicle.price %></p>
+      <p><strong>Mileage:</strong> <%= vehicle.mileage %> miles</p>
+      <p><strong>Description:</strong> <%= vehicle.description %></p>
+    </div>
+  </div>
+
+  <div>
+    <a href="/inventory">Back to inventory</a>
+  </div>
 
 </body>
 </html>
-
