@@ -1,51 +1,51 @@
+
 /* General Body Styles */
 body {
   font-family: var(--standard-font);
   background-image: url("/images/site/checkerboard.jpg"); /* Checkerboard background */
-  background-size: 100px 100px; /* Ensures the image appears as a repeating checkerboard */
-  background-repeat: repeat; /* Repeat the background to cover the entire page */
-  background-position: top left; /* Ensure the background starts at the top left */
-  margin: 0; /* Remove default body margin */
-  padding: 0; /* Remove default padding */
-  color: #f1e5e5; /* Default text color */
-  height: 100vh; /* Ensure body covers the full height */
+  background-size: 50px 50px; /* Smaller squares for better effect */
+  background-repeat: repeat;
+  background-position: top left;
+  margin: 0;
+  padding: 0;
+  color: black; /* Ensuring readable text */
+  height: 100vh;
   display: flex;
-  justify-content: center; /* Horizontally center the container */
-  align-items: flex-start; /* Align items at the top to ensure checkerboard appears on top */
+  justify-content: center;
+  align-items: flex-start;
 }
 
 /* Main Container Styles */
 .container {
-  width: 80%; /* Adjust container width for better responsiveness */
-  max-width: 1000px; /* Max width for larger screens */
+  min-height: 100vh; /* Ensure it covers the full viewport height */
+  width: 80%;
+  max-width: 1000px;
   margin: 20px auto;
-  background-color: white; /* White background for the container */
+  background-color: white;
   padding: 20px;
-  opacity: 1; /* Ensure container is fully opaque */
-  border-radius: 10px; /* Rounded corners for the white container */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
-  z-index: 1; /* Ensure it is above the checkerboard background */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1;
   position: relative;
-  margin-top: 20px; /* Adds space at the top to reveal the checkerboard above */
+  border: 3px solid cyan; /* Added border similar to the reference image */
 }
 
 /* Header Styles */
 header {
-  background-color: #007bff; /* Blue header background */
-  color: white; /* White text for contrast */
-  padding: 10px 0; /* Adjust padding as needed */
+  background-color: white; /* White header */
+  color: black;
+  padding: 10px 0;
   text-align: center;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
 }
 
 header h1 {
   margin: 0;
-  font-size: 2em; /* Adjust font size as needed */
+  font-size: 2em;
 }
 
 /* Navigation Styles */
 nav {
-  background-color: #343a40; /* Dark gray navigation background */
+  background-color: black;
   padding: 10px 0;
 }
 
@@ -53,273 +53,105 @@ nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
 
 nav li {
-  display: inline; /* Items will appear horizontally */
-  margin: 0 10px; /* Adjust spacing between nav items */
+  display: inline;
 }
 
 nav a {
   text-decoration: none;
-  color: white;
+  color: black;
+  background-color: white;
   font-weight: bold;
-  padding: 5px 10px;
+  padding: 5px 15px;
   border-radius: 5px;
-}
-
-nav a:hover {
-  background-color: #007bff; /* Highlight on hover */
 }
 
 /* Section for DMC Delorean */
 .delorean {
-  width: 100%;
-  text-align: left; /* Align text to the left */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 20px;
+  background-color: #f8f9fa; /* Light background like reference image */
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .delorean h2 {
-  color: #007bff; /* Blue color for DMC Delorean heading */
-  margin-left: 20px; /* Adds some space to the left of the heading */
+  color: #00a2e8; /* Brighter blue to match reference */
 }
 
 .delorean ul {
-  background-color: transparent; /* Transparent background for the list */
-  padding-left: 40px; /* Indentation for list items */
-  color: #007bff; /* Blue text for the list items */
-  list-style: disc; /* Bullet points for list items */
+  color: #00a2e8;
 }
 
 .delorean img {
-  display: block;
-  margin: 20px auto; /* Centers the image horizontally */
-  width: 60%; /* Makes the image bigger */
-  max-width: 500px; /* Maximum width of the image */
-}
-
-/* Upgrades and Reviews - Flexbox layout */
-.upgrades-and-reviews {
-  display: flex;
-  justify-content: space-between; /* Ensure there's space between the sections */
-  gap: 10px; /* Set a small gap between the sections */
-  width: 100%;
-}
-
-/* Upgrades section */
-.upgrades, .reviews {
-  width: 48%; /* Set the width to 48% for both sections to create a small gap */
-  margin: 0; /* Remove margin */
-}
-
-.upgrades h2, .reviews h2 {
-  color: #007bff; /* Blue color for headings */
-}
-
-/* Upgrades row (flux, flame, bumper stickers, hub caps) */
-.upgrades-row {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.upgrade-column {
-  display: flex;
-  flex-direction: column;
-  width: 35%;
-}
-
-.upgrade {
-  margin: 10px 0;
-  text-align: center;
-  background-color: #007bff; /* Blue background for upgrades */
-  padding: 10px;
-  border-radius: 5px; /* Rounded corners for upgrade items */
-}
-
-.upgrade img {
-  width: 80%;
-  max-width: 100px;
-}
-
-/* Reviews section */
-.reviews ul {
-  list-style: disc;
-  padding-right: 20px;
-}
-
-.reviews h2 {
-  color: black; /* Black color for the DMC Delorean Reviews title */
+  width: 40%;
+  max-width: 400px;
 }
 
 /* Button Styles */
 button {
-  background-color: #007bff;
+  background-color: #0095ff;
   color: white;
-  padding: 10px 20px;
+  padding: 10px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
+}
+
+/* Upgrades and Reviews Layout */
+.upgrades-and-reviews {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.upgrades, .reviews {
+  width: 48%;
+  background-color: #f8f9fa; /* Light background */
+  padding: 20px;
+  border-radius: 10px;
 }
 
 /* Footer Styles */
-footer.footer {
-  background-color: #008CBA; /* Teal footer background */
+footer {
+  background-color: blue; /* Blue background for footer */
   color: white;
+  padding: 20px;
   text-align: center;
-  padding: 10px 0;
-  position: relative;
-  bottom: 0;
-  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
 
-.footer-links a {
-  color: white;
-  text-decoration: none;
-  margin: 0 10px;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-}
-
-/* Responsive Design (Mobile View and Tablet View) */
+/* Responsive Design */
 @media (max-width: 768px) {
   .container {
     width: 90%;
     padding: 10px;
   }
 
-  .upgrades-and-reviews {
-    flex-direction: row; /* Keep both items in a row even on smaller screens */
-    gap: 10px; /* Ensure the gap is still small */
-    justify-content: space-between; /* Space them out evenly */
-  }
-
-  .upgrades, .reviews {
-    width: 48%; /* Ensure both sections are still side by side */
-    margin-bottom: 10px; /* Provide a little space between them vertically */
+  .delorean {
+    flex-direction: column;
+    align-items: center;
   }
 
   .delorean img {
-    width: 80%; /* Larger image on mobile */
-  }
-
-  .upgrade {
-    width: 100%; /* Each upgrade item takes full width on mobile */
-    margin-bottom: 20px;
-  }
-
-  .footer {
-    padding: 20px 0;
-  }
-}
-
-@media (max-width: 480px) {
-  header h1 {
-    font-size: 1.5em; /* Adjust font size on very small screens */
-  }
-
-  .delorean h2 {
-    font-size: 1.2em; /* Adjust heading size */
-  }
-
-  .delorean ul {
-    font-size: 0.9em; /* Smaller font for list items on mobile */
-  }
-
-  button {
-    padding: 8px 16px; /* Smaller button on mobile now */
+    width: 80%;
   }
 
   .upgrades-and-reviews {
-    flex-direction: column; /* Stack sections vertically on very small screens */
-    gap: 10px; /* Keep a small gap even in the column layout */
+    flex-direction: column;
   }
 
   .upgrades, .reviews {
-    width: 100%; /* Allow the sections to take full width on very small screens */
+    width: 100%;
   }
-}
-
-/* styles.css */
-.vehicle-detail-container {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  margin: 0 auto;
-  max-width: 1200px;
-}
-
-.vehicle-detail {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  width: 100%;
-}
-
-.vehicle-image img {
-  max-width: 500px;
-  width: 100%;
-  border-radius: 10px;
-}
-
-.vehicle-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.vehicle-info h2 {
-  font-size: 2em;
-  margin-bottom: 10px;
-}
-
-.vehicle-info p {
-  font-size: 1.1em;
-  margin: 5px 0;
-}
-
-@media (max-width: 768px) {
-  .vehicle-detail {
-      flex-direction: column;
-  }
-
-  .vehicle-info h2 {
-      font-size: 1.8em;
-  }
-
-  .vehicle-info p {
-      font-size: 1em;
-  }
-}
-
-/* General styling for vehicle details */
-.vehicle-detail {
-  text-align: center;
-  padding: 20px;
-  background-color: #f9f9f9;
-  margin: 20px auto;
-  max-width: 800px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.vehicle-image {
-  width: 100%;
-  max-width: 500px;
-  margin: 20px 0;
-  border-radius: 8px;
-}
-
-.vehicle-info p {
-  font-size: 1.2rem;
-  line-height: 1.6;
-}
-
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #333;
 }
